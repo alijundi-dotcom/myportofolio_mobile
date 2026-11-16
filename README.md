@@ -95,3 +95,6 @@ Chat: https://gemini.google.com/share/d/1_NVJ4OIqEf0jvD3Lejn34ilWLsnBFule?usp=sh
 
 Peran: Membantu langkah demi langkah
 Kekurangan: Kadang chat balasan terlalu panjang
+
+Catatan terkait satu commit sebelum ini:
+Harusnya tadi pake docs, bukan feat...sorry my bad
