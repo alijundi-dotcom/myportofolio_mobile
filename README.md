@@ -90,3 +90,8 @@ Kapan Full Restart:
 - Tambah paket atau dependensi baru di berkas pubspec.yaml yang menyertakan kode native platform
 - Modifikasi konfigurasi atau kode pada lapisan native masing-masing sistem operasi
 
+AI Discolure Tugas 7: 
+Chat: https://gemini.google.com/share/d/1_NVJ4OIqEf0jvD3Lejn34ilWLsnBFule?usp=sharing
+
+Peran: Membantu langkah demi langkah
+Kekurangan: Kadang chat balasan terlalu panjang
