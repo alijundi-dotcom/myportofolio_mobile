@@ -1,5 +1,5 @@
 import 'package:material_ui/material_ui.dart';
-// TODO: Impor drawer yang sudah dibuat sebelumnya
+import 'package:myportofolio_mobile/widgets/left_drawer.dart';
 
 class ProjectFormPage extends StatefulWidget{
   const ProjectFormPage({super.key});
@@ -36,7 +36,8 @@ class _ProjectFormPageState extends State<ProjectFormPage>{
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
       ),
-      // TODO: Tambahkan drawer yang sudah dibuat di sini
+      
+      drawer: const LeftDrawer(),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -174,15 +175,30 @@ class _ProjectFormPageState extends State<ProjectFormPage>{
                           builder: (context) {
                             return AlertDialog(
                               title: const Text('Proyek berhasil ditambahkan!'),
+                              content: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Nama Proyek: $_projectName'),
+                                    Text('Deskripsi: $_description'),
+                                    Text('Kategori: $_category'),
+                                    Text('Teknologi: $_technologies'),
+                                    Text('Tautan: $_projectLink'),
+                                  ],
+                                ),
+                              ),
                               actions: [
                                 TextButton(
                                   child: const Text('OK'),
                                   onPressed: () {
                                     Navigator.pop(context);
                                     _formKey.currentState!.reset();
+                                    
                                   },
                                 ),
                               ],
+                              
+                              
                             );
                           },
                         );
