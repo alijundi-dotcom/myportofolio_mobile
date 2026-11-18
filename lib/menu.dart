@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:myportofolio_mobile/widgets/left_drawer.dart';
 // Model Data untuk Item Tombol
 class ItemHomepage {
   final String name;
@@ -37,7 +37,9 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: const IconThemeData(color: Colors.white)
       ),
+      drawer: const LeftDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
