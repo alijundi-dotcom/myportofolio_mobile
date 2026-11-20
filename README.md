@@ -98,3 +98,41 @@ Kekurangan: Kadang chat balasan terlalu panjang
 
 Catatan terkait satu commit sebelum ini:
 Harusnya tadi pake docs, bukan feat...sorry my bad
+
+### Tugas 8
+1. Beda Navigator.push(), Navigator.pop(), Navigator.pushReplacement()
+
+push digunakan agar route baru ada di puncak stack, jadi halaman lama tetap tersimpan di bawahnya
+
+pushReplacement digunakan untuk mengganti stack teratas, tapi bawahnya tidak berubah.
+
+pop digunakan untuk menghapus halaman tearatas. berguna untuk kembali ke halaman sebelumnya, misal tombol Batal atau OK
+
+Metode yang digunakan formulir adalah push. Ketika user menekan misalkan Tambah Proyek, maka form Tambah Proyek akan terpush dan menimpa MyHomePage. Ketika selesai mengisi formulir maka tekan OK atau kalau tidak jadi tekan Batal. Metode yang digunakan untuk kembali ke laman utama adalah pop
+
+Opsi Home membawa user kembali ke MyHomePage, halaman pertama ketika aplikasi berjalan. 
+Saat menekan Home, maka jendela yang sekarang terbuka akan beralih ke tampilan utama MyHomePage
+
+2. Sususan Scaffold, Appbar, dan Drawer membantu menjaga halaman strukrut tetap konsisten
+Scaffold merupakan kerangka halaman atau page layout, yang isinya ada appBar dan drawer. Di sini Scaffold bertujuan untuk membungkus seluruh halaman agar memiliki satu warna yang sama.
+
+appBar untuk bilah judul dan kontrol navigasi
+
+drawer itu navigas yang samping kiri (di proyek ini kita sebut left drawer) yang  isinya ada menu navigasi seperti Home, Add Music, Add Project
+
+Ketiga komponen ini menjaga agar struktur halaman konsisten.
+
+Untuk warna tema sudah terjaga di main.dart menggunakan ThemeData. Sehingga setiap halaman mengakses warna primer lewar Theme.of(contect).colorScheme.primary pada AppVar, DrawerHeader, dan tombol aksi. Dengan begitu tampilan aplikasi memiliki identitas yang seragam.
+
+3. Tata letak tersebut dipilih untuk formulir karena sudah menyelesaikan masalah-masalah untuk elemen-elemen dalam formulir. SigleChildScrollView digunakan karena ini aplikasi mobile jadi jika kepenuhan bisa lanjut di bawah untuk widget widgetnya.
+
+Jadi secara keseluruhan kegunaannya adalah untuk menjaga fleksibilitas dan untuk kenyamanan user mobile, di mana mobile/handphone ya ruangnya terbatas jadi kita pakai tata letak yang seperti itu.
+
+Lalu pengaturan jarak juga dilakukan agar elemen tidak saling berimpitan, kegunaannya untuk agar tidak salah pencet(misal jari user terlalu besar) dan untuk kenyamanan mata user. Kadang kalau berimpitan gitu user tidak nyaman melihatnya.
+
+4. 
+GlobalKey<FormState> menjadi pengenal unik untuk mengakses objek FormState dari luar widget Form, menjalankna validasi, serta reset formulir.
+
+validator tugasnya mengecek setiap masukan agar valid dan sesuai permintaan. Kalau tidak sesuai akan kirim pesan error.
+
+validate dipakai saat onpressed Save. Ini digunakan untuk memastikan seluruh validator tereksekusi. Jika ada satu saja validator yang salah maka akan kembalikan pesan error
