@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:myportofolio_mobile/widgets/left_drawer.dart';
 import 'package:myportofolio_mobile/widgets/project_card.dart';
+
 // Model Data untuk Item Tombol
 class ItemHomepage {
   final String name;
@@ -22,7 +23,10 @@ class MyHomePage extends StatelessWidget {
   // Daftar Tombol Aksi
   final List<ItemHomepage> items = [
     ItemHomepage("Lihat Proyek", Icons.folder, Colors.blue),
+    ItemHomepage("Lihat Musik", Icons.folder, Colors.blue),
     ItemHomepage("Tambah Proyek", Icons.add_circle, Colors.green),
+    ItemHomepage("Tambah Musik", Icons.add_circle, Colors.green),
+    
     ItemHomepage("Logout", Icons.logout, Colors.red),
   ];
 

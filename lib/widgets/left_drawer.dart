@@ -1,5 +1,7 @@
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
+import 'package:myportofolio_mobile/screens/music_form.dart';
+
 import 'package:material_ui/material_ui.dart';
 
 class LeftDrawer extends StatelessWidget {
@@ -62,6 +64,20 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.library_music_outlined),
+            title: const Text('Add Music'),
+            // Navigasi ke halaman tambah musik
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MusicFormPage(),
+                ),
+              );
+            },
+          ),
+
         ],
       ),
     );
