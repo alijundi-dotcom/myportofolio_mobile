@@ -136,3 +136,10 @@ GlobalKey<FormState> menjadi pengenal unik untuk mengakses objek FormState dari 
 validator tugasnya mengecek setiap masukan agar valid dan sesuai permintaan. Kalau tidak sesuai akan kirim pesan error.
 
 validate dipakai saat onpressed Save. Ini digunakan untuk memastikan seluruh validator tereksekusi. Jika ada satu saja validator yang salah maka akan kembalikan pesan error
+
+Chat AI: https://gemini.google.com/share/d/1ogydXJ0wPx0-kYmupPj_YcgDaYTFG0fS?usp=sharing
+Model Gemini 4 Pemikiran Hidrogen
+
+Peran: Membantu memahami konsep, memberi petunjuk, dan membantu langkah langkah menyelesaikan Tugas.
+
+Kekurangan: tidak bisa akses langsung ke VSCode jadi aku harus upload berkas berkas yang mau dicek bagian errornya
