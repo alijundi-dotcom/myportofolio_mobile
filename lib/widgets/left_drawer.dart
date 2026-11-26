@@ -1,6 +1,10 @@
+import 'package:myportofolio_mobile/screens/login_screen.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
 import 'package:myportofolio_mobile/screens/music_form.dart';
+import 'package:myportofolio_mobile/services/auth_state.dart';
+import 'package:myportofolio_mobile/widgets/auth_guard.dart';
+import 'package:provider/provider.dart';
 
 import 'package:material_ui/material_ui.dart';
 
@@ -9,6 +13,7 @@ class LeftDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLoggedIn = context.watch<AuthState>().isLoggedIn;
     return Drawer(
       child: ListView(
         children: [
@@ -55,8 +60,11 @@ class LeftDrawer extends StatelessWidget {
             leading: const Icon(Icons.add_circle_outline),
             title: const Text('Add Project'),
             // Navigasi ke halaman tambah proyek
-            onTap: () {
-              Navigator.pushReplacement(
+            onTap: ()  async {
+              Navigator.pop(context);
+              final allowed = await ensureLoggedIn(context);
+              if (!allowed || !context.mounted) return;
+              await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ProjectFormPage(),
@@ -77,6 +85,37 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
+          const Divider(),
+          if (!isLoggedIn)
+            ListTile(
+              leading: const Icon(Icons.login),
+              title: const Text('Login'),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginScreen(),
+                  ),
+                );
+              },
+            )
+          else 
+            ListTile(
+                leading: const Icon(Icons.logout),
+                title: const Text('Logout'),
+                onTap: () async {
+                  Navigator.pop(context);
+                  await context.read<AuthState>().logout();
+                  if(!context.mounted) return;
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      const SnackBar(content: Text('Logged out successfully')),
+                    );
+                },
+              )
+
 
         ],
       ),
