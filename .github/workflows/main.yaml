@@ -1,34 +1,41 @@
-name: Flutter CI
+name: CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main]
   pull_request:
-    branches: [ main, master ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v2
+    with:
+      setup: dart run build_runner build --delete-conflicting-outputs
+      coverage_excludes: "**/*.g.dart"
+      min_coverage: 0
+      timeout_minutes: 15
+
+  build_apk:
+    needs: build
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'
-          channel: 'stable'
+          flutter-version: '3.27.0'
+          channel: stable
           cache: true
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Run static analysis
-        run: flutter analyze
-
-      - name: Run unit and widget tests
-        run: flutter test
-
-      - name: Build web release
-        run: flutter build web --release
+      - name: Install dependencies and generate code
+        run: |
+          flutter pub get
+          dart run build_runner build --delete-conflicting-outputs
+      - name: Build release APK
+        run: flutter build apk --release --dart-define=API_BASE_URL=${{ vars.API_BASE_URL }}
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
